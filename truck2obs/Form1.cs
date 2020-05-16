@@ -148,7 +148,8 @@ namespace truck2obs
 
             label3.Text = tmplabel;
             // Write the string array to a new file named "WriteLines.txt".
-            using (StreamWriter outputFile = new StreamWriter("etsatsroute.txt"))
+            Directory.CreateDirectory("c:/tmp/");
+            using (StreamWriter outputFile = new StreamWriter("c:/tmp/etsatsroute.txt"))
             {
                 outputFile.WriteLine(tmplabel);
             }

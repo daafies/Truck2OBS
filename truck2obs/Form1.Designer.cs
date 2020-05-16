@@ -73,16 +73,16 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(905, 277);
+            this.label2.Location = new System.Drawing.Point(463, 277);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(164, 13);
+            this.label2.Size = new System.Drawing.Size(308, 13);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Window capture this area in OBS";
+            this.label2.Text = "Window capture this area in OBS, or read c:\\tmp\\etsatsroute.txt";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(762, 144);
+            this.pictureBox1.Location = new System.Drawing.Point(508, 144);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(222, 130);
             this.pictureBox1.TabIndex = 4;
@@ -156,7 +156,7 @@
             this.Controls.Add(this.textBox1);
             this.Name = "Form1";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
-            this.Text = "Truck2OBS v0,1";
+            this.Text = "Truck2OBS v0.2";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
