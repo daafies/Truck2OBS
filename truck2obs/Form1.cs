@@ -53,8 +53,39 @@ namespace truck2obs
             {
                 label3.ForeColor = (System.Drawing.Color)Properties.Settings.Default["forecolor"];
             }
+            ChangeLingo();
+
         }
 
+        private void ChangeLingo()
+        {
+            if (Properties.Settings.Default["lingo"].ToString().Equals("English"))
+            {
+                label1.Text = "Language";
+                colorButton.Text = "Background Color";
+                button1.Text = "Foreground color";
+                label2.Text = "Window capture this area in OBS, or read c:\\tmp\\etsatsroute.txt";
+
+            }
+            else if (Properties.Settings.Default["lingo"].ToString().Equals("Deutsch"))
+            {
+                label1.Text = "Sprache";
+                colorButton.Text = "Hintergrundfarbe";
+                button1.Text = "Vordergrundfarbe";
+                label2.Text = "Fenstercapture dieses bereich in OBS, oder lesen sie c:\\tmp\\etsatsroute.txt";
+            }
+            else
+            {
+                label1.Text = "Language";
+                colorButton.Text = "Background Color";
+                button1.Text = "Foreground color";
+                label2.Text = "Window capture this area in OBS, or read c:\\tmp\\etsatsroute.txt";
+            }
+
+
+        }
+
+        
         public void UpdateTelem()
         {
             string tmplabel = "";
@@ -130,7 +161,41 @@ namespace truck2obs
 
 
                     }
-
+                    /*
+        string gamename = stuff.game.gameName;
+        string connected = stuff.game.connected;
+        string cargo = stuff.trailer.name;
+        string startCity = stuff.job.sourceCity;
+        string destCity = stuff.job.destinationCity;
+        int distRemaining = stuff.navigation.estimatedDistance;
+ * */
+                    using (StreamWriter outputFile = new StreamWriter("c:/tmp/startcity.txt"))
+                    {
+                        outputFile.WriteLine(stuff.job.sourceCity);
+                    }
+                    using (StreamWriter outputFile = new StreamWriter("c:/tmp/destcity.txt"))
+                    {
+                        outputFile.WriteLine(stuff.job.destinationCity);
+                    }
+                    using (StreamWriter outputFile = new StreamWriter("c:/tmp/cargo.txt"))
+                    {
+                        outputFile.WriteLine(stuff.trailer.name);
+                    }
+                    using (StreamWriter outputFile = new StreamWriter("c:/tmp/game.txt"))
+                    {
+                        outputFile.WriteLine(stuff.game.gameName);
+                    }
+                    using (StreamWriter outputFile = new StreamWriter("c:/tmp/distance.txt"))
+                    {
+                        if (gamename.Equals("ATS"))
+                        {
+                            outputFile.WriteLine(Math.Round((distRemaining * 0.00062137), 1).ToString() + " miles");
+                        }
+                        else
+                        {
+                            outputFile.WriteLine(Math.Round((distRemaining * 0.001), 1).ToString() + " km");
+                        }
+                    }
                 }
             }
             catch
@@ -153,6 +218,8 @@ namespace truck2obs
             {
                 outputFile.WriteLine(tmplabel);
             }
+
+
 
         }
 
@@ -203,6 +270,7 @@ namespace truck2obs
         {
             Properties.Settings.Default["lingo"] = languageBox1.SelectedItem;
             Properties.Settings.Default.Save();
+            ChangeLingo();
         }
     }
 
