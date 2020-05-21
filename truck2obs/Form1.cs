@@ -55,6 +55,11 @@ namespace truck2obs
             }
             ChangeLingo();
 
+            customJobCheckBox.Checked = (bool)Properties.Settings.Default["use_customjobtext"];
+            textBox2.Text = (string)Properties.Settings.Default["customjobtext"];
+            customNoJobCheckBox.Checked = (bool)Properties.Settings.Default["use_customnojobtext"];
+            textBox3.Text = (string)Properties.Settings.Default["customnojobtext"];
+
         }
 
         private void ChangeLingo()
@@ -120,7 +125,11 @@ namespace truck2obs
 
                     if (startCity.Equals(""))
                     {
-                        if (languageBox1.SelectedItem.Equals("English"))
+                        if (customNoJobCheckBox.Checked)
+                        {
+                            tmplabel = textBox1.Text = (string)Properties.Settings.Default["customnojobtext"];
+                        }
+                        else if (languageBox1.SelectedItem.Equals("English"))
                         {
                             tmplabel = textBox1.Text = "Between jobs";
                         }
@@ -133,7 +142,17 @@ namespace truck2obs
                     {
                         if (gamename.Equals("ATS"))
                         {
-                            if (languageBox1.SelectedItem.Equals("English"))
+                            if (customJobCheckBox.Checked)
+                            {
+                                string temp = (string)Properties.Settings.Default["customjobtext"];
+                                // now replace the @src @dest @cargo @dist
+                                temp = temp.Replace("@src", startCity);
+                                temp = temp.Replace("@dest", destCity);
+                                temp = temp.Replace("@cargo", cargo);
+                                temp = temp.Replace("@dist", Math.Round((distRemaining * 0.00062137), 1) + " miles");
+                                tmplabel = temp;
+                            }
+                            else if (languageBox1.SelectedItem.Equals("English"))
                             {
                                 tmplabel = startCity + " -> " + destCity + ". " + Math.Round((distRemaining * 0.00062137), 1) + " miles remaining";
                                 textBox1.Text = "game: " + gamename + "\r\ncargo: " + cargo + "\r\nstartCity: " + startCity + "\r\nDestination: " + destCity + "\r\nremaining distance: " + Math.Round((distRemaining * 0.00062137), 1) + " miles";
@@ -146,7 +165,16 @@ namespace truck2obs
                         }
                         else if (gamename.Equals("ETS2"))
                         {
-                                if (languageBox1.SelectedItem.Equals("English"))
+                            if (customJobCheckBox.Checked)
+                            {
+                                string temp = (string)Properties.Settings.Default["customjobtext"];
+                                // now replace the @src @dest @cargo @dist
+                                temp.Replace("@src", startCity);
+                                temp.Replace("@dest", destCity);
+                                temp.Replace("@cargo", cargo);
+                                temp.Replace("@dist", Math.Round((distRemaining * 0.001), 1) + " km");
+                            }
+                            if (languageBox1.SelectedItem.Equals("English"))
                                 {
                                     tmplabel = startCity + " -> " + destCity + ". " + Math.Round((distRemaining * 0.001), 1) + " km remaining";
                                     textBox1.Text = "game: " + gamename + "\r\ncargo: " + cargo + "\r\nstartCity: " + startCity + "\r\nDestination: " + destCity + "\r\nremaining distance: " + Math.Round((distRemaining * 0.001), 1) + " km";
@@ -187,13 +215,17 @@ namespace truck2obs
                     }
                     using (StreamWriter outputFile = new StreamWriter("c:/tmp/distance.txt"))
                     {
-                        if (gamename.Equals("ATS"))
+                        if (gamename != null)
                         {
-                            outputFile.WriteLine(Math.Round((distRemaining * 0.00062137), 1).ToString() + " miles");
-                        }
-                        else
-                        {
-                            outputFile.WriteLine(Math.Round((distRemaining * 0.001), 1).ToString() + " km");
+
+                            if (gamename.Equals("ATS"))
+                            {
+                                outputFile.WriteLine(Math.Round((distRemaining * 0.00062137), 1).ToString() + " miles");
+                            }
+                            else
+                            {
+                                outputFile.WriteLine(Math.Round((distRemaining * 0.001), 1).ToString() + " km");
+                            }
                         }
                     }
                 }
@@ -271,6 +303,54 @@ namespace truck2obs
             Properties.Settings.Default["lingo"] = languageBox1.SelectedItem;
             Properties.Settings.Default.Save();
             ChangeLingo();
+        }
+
+        private void customJobTextBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default["use_customjobtext"] = customJobCheckBox.Checked;
+            Properties.Settings.Default.Save();
+
+            if (customJobCheckBox.Checked == false)
+            {
+                textBox2.ReadOnly = true;
+                textBox2.BackColor = System.Drawing.SystemColors.Control;
+            }
+            else
+            {
+                textBox2.ReadOnly = false;
+                textBox2.BackColor = System.Drawing.SystemColors.Window;
+
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default["customjobtext"] = textBox2.Text;
+            Properties.Settings.Default.Save();
+        }
+
+        private void customNoJobCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default["use_customnojobtext"] = customNoJobCheckBox.Checked;
+            Properties.Settings.Default.Save();
+
+            if (customNoJobCheckBox.Checked == false)
+            {
+                textBox3.ReadOnly = true;
+                textBox3.BackColor = System.Drawing.SystemColors.Control;
+            }
+            else
+            {
+                textBox3.ReadOnly = false;
+                textBox3.BackColor = System.Drawing.SystemColors.Window;
+
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default["customnojobtext"] = textBox3.Text;
+            Properties.Settings.Default.Save();
         }
     }
 

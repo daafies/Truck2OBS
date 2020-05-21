@@ -11,8 +11,17 @@
     <Setting Name="forecolor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="Setting" Type="System.String" Scope="User">
+    <Setting Name="customjobtext" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="customnojobtext" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="use_customjobtext" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="use_customnojobtext" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

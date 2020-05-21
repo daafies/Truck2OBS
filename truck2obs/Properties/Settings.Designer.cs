@@ -60,12 +60,48 @@ namespace truck2obs.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Setting {
+        public string customjobtext {
             get {
-                return ((string)(this["Setting"]));
+                return ((string)(this["customjobtext"]));
             }
             set {
-                this["Setting"] = value;
+                this["customjobtext"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string customnojobtext {
+            get {
+                return ((string)(this["customnojobtext"]));
+            }
+            set {
+                this["customnojobtext"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool use_customjobtext {
+            get {
+                return ((bool)(this["use_customjobtext"]));
+            }
+            set {
+                this["use_customjobtext"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool use_customnojobtext {
+            get {
+                return ((bool)(this["use_customnojobtext"]));
+            }
+            set {
+                this["use_customnojobtext"] = value;
             }
         }
     }
