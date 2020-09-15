@@ -174,20 +174,17 @@ namespace truck2obs
                                 temp.Replace("@cargo", cargo);
                                 temp.Replace("@dist", Math.Round((distRemaining * 0.001), 1) + " km");
                             }
-                            if (languageBox1.SelectedItem.Equals("English"))
-                                {
-                                    tmplabel = startCity + " -> " + destCity + ". " + Math.Round((distRemaining * 0.001), 1) + " km remaining";
-                                    textBox1.Text = "game: " + gamename + "\r\ncargo: " + cargo + "\r\nstartCity: " + startCity + "\r\nDestination: " + destCity + "\r\nremaining distance: " + Math.Round((distRemaining * 0.001), 1) + " km";
-                                }
-                                else
-                                {
-                                    tmplabel = startCity + " -> " + destCity + ". Noch " + Math.Round((distRemaining * 0.001), 1) + " km";
-                                    textBox1.Text = "game: " + gamename + "\r\ncargo: " + cargo + "\r\nstartCity: " + startCity + "\r\nDestination: " + destCity + "\r\nremaining distance: " + Math.Round((distRemaining * 0.001), 1) + " km";
-                                }
+                            else if (languageBox1.SelectedItem.Equals("English"))
+                            {
+                                tmplabel = startCity + " -> " + destCity + ". " + Math.Round((distRemaining * 0.001), 1) + " km remaining";
+                                textBox1.Text = "game: " + gamename + "\r\ncargo: " + cargo + "\r\nstartCity: " + startCity + "\r\nDestination: " + destCity + "\r\nremaining distance: " + Math.Round((distRemaining * 0.001), 1) + " km";
+                            }
+                            else
+                            {
+                                tmplabel = startCity + " -> " + destCity + ". Noch " + Math.Round((distRemaining * 0.001), 1) + " km";
+                                textBox1.Text = "game: " + gamename + "\r\ncargo: " + cargo + "\r\nstartCity: " + startCity + "\r\nDestination: " + destCity + "\r\nremaining distance: " + Math.Round((distRemaining * 0.001), 1) + " km";
+                            }
                         }
-
-
-
                     }
                     /*
         string gamename = stuff.game.gameName;
