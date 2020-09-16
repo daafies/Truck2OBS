@@ -169,10 +169,11 @@ namespace truck2obs
                             {
                                 string temp = (string)Properties.Settings.Default["customjobtext"];
                                 // now replace the @src @dest @cargo @dist
-                                temp.Replace("@src", startCity);
-                                temp.Replace("@dest", destCity);
-                                temp.Replace("@cargo", cargo);
-                                temp.Replace("@dist", Math.Round((distRemaining * 0.001), 1) + " km");
+                                temp = temp.Replace("@src", startCity);
+                                temp = temp.Replace("@dest", destCity);
+                                temp = temp.Replace("@cargo", cargo);
+                                temp = temp.Replace("@dist", Math.Round((distRemaining * 0.001), 1) + " km");
+                                tmplabel = temp;
                             }
                             else if (languageBox1.SelectedItem.Equals("English"))
                             {
